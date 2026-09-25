@@ -66,16 +66,18 @@ section{padding:clamp(72px,11vw,140px) 0}
 /* ---------- PRELOADER (iOS style) ---------- */
 #loader{--ios:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;position:fixed;inset:0;z-index:100;background:#fff;color:#1c1c1e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;padding:24px;font-family:var(--ios);-webkit-font-smoothing:antialiased;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
 #loader.done{opacity:0;transform:scale(1.04);pointer-events:none}
-.duo{display:flex;align-items:center;gap:clamp(12px,3vw,26px);animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.duo{display:flex;align-items:center;gap:clamp(10px,3vw,28px);animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.duo .vs{width:34px;height:34px;border-radius:50%;background:#f2f2f7;color:#8e8e93;display:grid;place-items:center;font-size:12px;font-weight:600;flex:none}
-.memecard{width:min(230px,38vw);text-align:center;cursor:pointer}
-.memecard .ph{aspect-ratio:1;border-radius:clamp(18px,4vw,26px);overflow:hidden;position:relative;background:#f2f2f7;box-shadow:0 10px 30px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.06)}
+.duo .vs{font-family:var(--serif);font-style:italic;font-size:clamp(26px,5vw,44px);color:var(--ink)}
+.memecard{width:min(260px,40vw);background:#fff;border-radius:18px;padding:8px 8px 0;box-shadow:0 0 0 2px var(--ink),0 20px 50px rgba(0,0,0,.15);cursor:pointer}
+.memecard .ph{aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;background:#eee}
 .memecard img{width:100%;height:100%;object-fit:cover}
-.memecard.m2 img{filter:blur(var(--bl,14px));transform:scale(1.08);transition:transform .6s}
-.memecard.m2.ready img{filter:none;transform:none;transition:filter .5s,transform .6s}
-.memecard .cap2{display:block;margin-top:12px;font-size:clamp(14px,2.4vw,17px);font-weight:600;letter-spacing:-.01em}
-.memecard .sub{display:block;margin-top:2px;font-size:13px;color:#8e8e93}
+.memecard.m2 img{filter:grayscale(1) blur(var(--bl,14px))}
+.memecard.m2.ready img{filter:none;transition:filter .4s}
+.memecard .cap2{display:block;text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(11px,2.6vw,17px);text-transform:uppercase;padding:10px 2px 12px;line-height:1.05;color:var(--ink)}
+.memecard .sub{display:none}
+.memecard.m2 .ph::after{content:"завантажую красу…";position:absolute;inset:auto 0 10px;text-align:center;font-size:12px;color:#fff;font-weight:700;text-shadow:0 1px 4px #000;font-family:var(--sans)}
+.memecard.m2.ready .ph::after{content:"✨ готово"}
 .bar{width:min(220px,60vw);text-align:center}
 .bar-track{height:4px;border-radius:99px;background:#e5e5ea;overflow:hidden}
 .bar-fill{height:100%;width:0;border-radius:99px;background:#1c1c1e;transition:width .15s linear}
@@ -390,9 +392,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <!-- ========== PRELOADER ========== -->
 <div id="loader" aria-live="polite">
   <div class="duo">
-    <div class="memecard m1" id="meme"><div class="ph"><img src="img/dog.webp" alt="Пес із намальованими бровами"></div><span class="cap2">Брови без мене</span><span class="sub">до</span></div>
+    <div class="memecard m1" id="meme"><div class="ph"><img src="img/dog.webp" alt="Пес із намальованими бровами"></div><span class="cap2">брови без мене</span></div>
     <span class="vs">vs</span>
-    <div class="memecard m2" id="meme2"><div class="ph"><img src="img/withme.webp?v=2" alt="Брови після роботи Влади"></div><span class="cap2">Брови зі мною</span><span class="sub">після</span></div>
+    <div class="memecard m2" id="meme2"><div class="ph"><img src="img/withme.webp?v=2" alt="Брови після роботи Влади"></div><span class="cap2">брови зі мною</span></div>
   </div>
   <div class="bar">
     <div class="bar-track"><div class="bar-fill" id="fill"></div></div>
