@@ -63,36 +63,25 @@ section{padding:clamp(72px,11vw,140px) 0}
 .btn.ghost:hover{background:var(--ink);color:var(--paper)}
 .btn svg{width:18px;height:18px}
 
-/* ---------- PRELOADER ---------- */
-#loader{position:fixed;inset:0;z-index:100;background:#fff;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px;transition:clip-path .9s cubic-bezier(.77,0,.18,1);clip-path:inset(0 0 0 0)}
-#loader.done{clip-path:inset(0 0 100% 0)}
-.meme{position:relative;width:min(340px,78vw);aspect-ratio:1;border-radius:28px;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.5);transform:rotate(-3deg);animation:bob 2.4s ease-in-out infinite;cursor:pointer}
-.meme img{width:100%;height:100%;object-fit:cover}
-.meme .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(22px,6.4vw,30px);line-height:1;text-transform:uppercase;color:#fff;-webkit-text-stroke:2px #000;paint-order:stroke fill;text-shadow:0 3px 0 #000}
-.meme .cap.top{top:14px;bottom:auto;font-size:clamp(14px,4vw,18px);-webkit-text-stroke:1.5px #000}
-.meme.woof{animation:woof .5s}
-@keyframes bob{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(2deg) translateY(-8px)}}
-@keyframes woof{0%{transform:scale(1) rotate(-3deg)}30%{transform:scale(1.08) rotate(6deg)}60%{transform:scale(.96) rotate(-6deg)}100%{transform:scale(1) rotate(-3deg)}}
-.bar{width:min(420px,84vw)}
-.bar-track{height:14px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 2px var(--ink);overflow:hidden;position:relative}
-.bar-fill{height:100%;width:0;border-radius:99px;background:var(--ink);position:relative;transition:width .15s linear}
-.bar-fill::after{display:none;content:"";position:absolute;right:-6px;top:50%;width:22px;height:8px;border-radius:0 12px 2px 12px;background:var(--cocoa);transform:translateY(-50%) rotate(-12deg)}
-.bar-meta{display:flex;justify-content:space-between;margin-top:12px;font-size:14px;gap:12px}
-.duo{display:flex;align-items:center;gap:clamp(10px,3vw,28px)}
-.duo .vs{font-family:var(--serif);font-style:italic;font-size:clamp(26px,5vw,44px)}
-.memecard{width:min(260px,40vw);background:#fff;border-radius:18px;padding:8px 8px 0;box-shadow:0 0 0 2px var(--ink),0 20px 50px rgba(0,0,0,.15);cursor:pointer;transition:transform .3s}
-.memecard.m1{}
-.memecard.m2{}
-.memecard .ph{aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;background:#eee}
+/* ---------- PRELOADER (iOS style) ---------- */
+#loader{--ios:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;position:fixed;inset:0;z-index:100;background:#fff;color:#1c1c1e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;padding:24px;font-family:var(--ios);-webkit-font-smoothing:antialiased;transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+#loader.done{opacity:0;transform:scale(1.04);pointer-events:none}
+.duo{display:flex;align-items:center;gap:clamp(12px,3vw,26px);animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.duo .vs{width:34px;height:34px;border-radius:50%;background:#f2f2f7;color:#8e8e93;display:grid;place-items:center;font-size:12px;font-weight:600;flex:none}
+.memecard{width:min(230px,38vw);text-align:center;cursor:pointer}
+.memecard .ph{aspect-ratio:1;border-radius:clamp(18px,4vw,26px);overflow:hidden;position:relative;background:#f2f2f7;box-shadow:0 10px 30px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.06)}
 .memecard img{width:100%;height:100%;object-fit:cover}
-.memecard.m2 img{filter:grayscale(1) blur(var(--bl,14px))}
-.memecard.m2.ready img{filter:none;transition:filter .4s}
-.memecard .cap2{display:block;text-align:center;font-family:var(--display);font-weight:900;font-size:clamp(11px,2.6vw,17px);text-transform:uppercase;padding:10px 2px 12px;line-height:1.05}
-.memecard.m2 .ph::after{content:"завантажую красу…";position:absolute;inset:auto 0 10px;text-align:center;font-size:12px;color:#fff;font-weight:700;text-shadow:0 1px 4px #000}
-.memecard.m2.ready .ph::after{content:"✨ готово"}
-.memecard.woof{animation:none}
-.bar-pct{font-family:var(--display);font-weight:700;opacity:1}
-.loader-hint{font-size:12px;opacity:.5;letter-spacing:.08em;text-transform:uppercase}
+.memecard.m2 img{filter:blur(var(--bl,14px));transform:scale(1.08);transition:transform .6s}
+.memecard.m2.ready img{filter:none;transform:none;transition:filter .5s,transform .6s}
+.memecard .cap2{display:block;margin-top:12px;font-size:clamp(14px,2.4vw,17px);font-weight:600;letter-spacing:-.01em}
+.memecard .sub{display:block;margin-top:2px;font-size:13px;color:#8e8e93}
+.bar{width:min(220px,60vw);text-align:center}
+.bar-track{height:4px;border-radius:99px;background:#e5e5ea;overflow:hidden}
+.bar-fill{height:100%;width:0;border-radius:99px;background:#1c1c1e;transition:width .15s linear}
+.bar-meta{margin-top:12px;font-size:13px;color:#8e8e93;display:flex;justify-content:center;gap:6px}
+.bar-pct{font-variant-numeric:tabular-nums}
+.loader-brand{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));font-size:13px;color:#8e8e93;letter-spacing:.02em}
 
 /* ---------- NAV ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:14px 0;transition:background .3s,backdrop-filter .3s}
@@ -401,15 +390,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <!-- ========== PRELOADER ========== -->
 <div id="loader" aria-live="polite">
   <div class="duo">
-    <div class="memecard m1" id="meme"><div class="ph"><img src="img/dog.webp" alt="Пес із намальованими бровами"></div><span class="cap2">брови без мене</span></div>
+    <div class="memecard m1" id="meme"><div class="ph"><img src="img/dog.webp" alt="Пес із намальованими бровами"></div><span class="cap2">Брови без мене</span><span class="sub">до</span></div>
     <span class="vs">vs</span>
-    <div class="memecard m2" id="meme2"><div class="ph"><img src="img/withme.webp?v=2" alt="Брови після роботи Влади"></div><span class="cap2">брови зі мною</span></div>
+    <div class="memecard m2" id="meme2"><div class="ph"><img src="img/withme.webp?v=2" alt="Брови після роботи Влади"></div><span class="cap2">Брови зі мною</span><span class="sub">після</span></div>
   </div>
   <div class="bar">
     <div class="bar-track"><div class="bar-fill" id="fill"></div></div>
-    <div class="bar-meta"><span id="status">Розчісуємо брови…</span><span class="bar-pct" id="pct">0%</span></div>
+    <div class="bar-meta"><span id="status">Завантаження…</span><span class="bar-pct" id="pct">0%</span></div>
   </div>
-  <div class="loader-hint">тицьни на песика 🐾</div>
+  <div class="loader-brand">bubl_brows</div>
 </div>
 
 <!-- ========== NAV ========== -->
@@ -840,7 +829,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- PRELOADER ---------- */
-  const statuses = ['Розчісуємо брови…','Змішуємо фарбу…','Шукаємо симетрію…','Вищипуємо зайве…','Ламінуємо…','Малюємо ескіз…','Майже готово, не моргай…'];
+  const statuses = ['Завантаження…','Розчісуємо брови…','Змішуємо фарбу…','Ламінуємо…','Майже готово…'];
   const meme2 = $('#meme2'), fill = $('#fill'), pct = $('#pct'), status = $('#status'), loader = $('#loader');
   const MIN = reduce ? 600 : 3200, t0 = performance.now();
   let loaded = document.readyState === 'complete', p = 0, si = 0;
@@ -855,13 +844,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     if (p >= 99) meme2.classList.add('ready');
     const ni = Math.min(statuses.length - 1, Math.floor(p / (100 / statuses.length)));
     if (ni !== si) { si = ni; status.textContent = statuses[si]; }
-    if (p >= 100) { status.textContent = 'Брови готові ✨'; setTimeout(finish, 900); }
+    if (p >= 100) { status.textContent = 'Готово'; setTimeout(finish, 700); }
     else requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
-  function finish(){ loader.classList.add('done'); document.body.classList.remove('loading'); setTimeout(() => loader.remove(), 1000); }
+  function finish(){ loader.classList.add('done'); document.body.classList.remove('loading'); setTimeout(() => loader.remove(), 600); }
   const meme = $('#meme');
-  meme.addEventListener('click', e => { meme.classList.remove('woof'); void meme.offsetWidth; meme.classList.add('woof'); browBurst(e.clientX, e.clientY, 10); status.textContent = 'Гав! 🐶'; });
+  meme.addEventListener('click', () => { status.textContent = 'Гав 🐶'; });
 
   /* ---------- brow confetti ---------- */
   const colors = ['#0b0b0b','#3a3a3a','#777','#aaa','#000'];
